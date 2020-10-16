@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :grocery_lists do
     resources :grocey_items, shallow: true
   end

@@ -8,15 +8,24 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Recipes',recipes_path,method: :delete, class: "nav-link", aria: { disabled: false} %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Groceries',grocery_lists_path, class: "nav-link", aria: { disabled: false} %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign up', "#", class: "nav-link active", aria: { disabled: false} %>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Recipes',recipes_path,method: :delete, class: "nav-link", aria: { disabled: false} %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Groceries',grocery_lists_path, class: "nav-link", aria: { disabled: false} %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout',destroy_user_session_path, method: :delete, class: "nav-link", aria: { disabled: false} %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log in', new_user_session_path, class: "nav-link active", aria: { disabled: false} %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_registration_path, class: "nav-link active", aria: { disabled: false} %>
+          </li>
+        <% end %>
       </ul>
     </div>
 </nav>
