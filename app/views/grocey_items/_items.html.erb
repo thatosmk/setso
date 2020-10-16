@@ -1,0 +1,22 @@
+<div class="d-flex flex-sm-column flex-row bd-highlight justify-content-center">
+  <div class="bd-highlight w-100">
+    <p>Items</p>
+  </div>
+  <div class="bd-highlight w-100">
+    <% list.grocey_items.each do |item|%>
+      <li class="list-group-item">
+        <%= item.item %>
+      </li>
+    <% end %>
+  </div>
+  <div class="bd-highlight w-100">
+    <div class="p-3 mt-4 border rounded">
+      <h5 class="font-weight-light py-3">add a new item</h5>
+    <%= form_with(model: [list, GroceyItem.new], local: true, class: "form-inline") do |form| %>
+        <%= form.text_field :item , class: "form-control mb-2 mr-sm-2", placeholder: "Item name"%>
+        <%= form.number_field :qty, class: "form-control mb-2 mr-sm-2", placeholder: "Quantity" %>
+        <%= form.submit "add to list", class: "btn btn-success mb-2" %>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="d-flex flex-md-row flex-column bd-highlight">
+  <div class="bd-highlight w-100">
+    <h2 class="font-weight-light py-4">Recipes</h2>
+    <div class="d-flex flex-sm-row flex-column bd-highlight">
+      <div class="bd-highlight col-md-10">
+        <%= form_tag(recipes_path, method: :get, class: "form-inline") do%>
+          <%= text_field_tag :search, params[:search], class: "form-control mb-2 mr-sm-2", placeholder: "Search for a recipe"%>
+          <%= select_tag :meal_type,  options_for_select(["Vegetarian", "Meaty"]),  multipart: true, include_blank: "Type: All", class: "custom-select mb-2 mr-sm-2 mr-1"%>
+          <%= submit_tag "Search", class: "btn btn-success mb-2"%>
+        <% end %>
+      </div>
+      <div class="bd-highlight col-md-2">
+        <%= link_to 'New Recipe', new_recipe_path, class: "btn btn-outline-dark"%>
+      </div>
+    </div>
+    <% if @recipes.count < 1 %>
+      <div class="jumbotron mt-3">
+        <h2 class="text-center fonr-weight-light">
+          No recipes found
+        </h2>
+      </div>
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <hr/>
+          <%= link_to recipe do %>
+          <div class="media">
+            <div class="media-body">
+              <h3 class="font-weight-bold"><%= recipe.name %></h3>
+            </div>
+          </div>
+          <% end %>
+        <hr/>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+

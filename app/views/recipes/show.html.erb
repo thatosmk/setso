@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2 class="font-weight-light py-3">
+  <%= @recipe.name %>
+</h2>
+<hr/>
+
+<h3 class="font-weight-light py-3">
+    Ingredients:
+</h3>
+<p>
+  <%= @recipe.ingredients %>
+</p>
+
+<h3 class="font-weight-light py-3">
+    Method:
+</h3>
+<p>
+  <%= @recipe.method %>
+</p>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

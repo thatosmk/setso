@@ -1,0 +1,46 @@
+<%= form_with(model: recipe, local: true) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="py-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control form-control-lg mb-2", placeholder: "e.g. Traditional ting" %>
+  </div>
+
+  <div class="py-3 row">
+    <%= form.label :meal_type, class: "mr-3" %>
+    <%= form.select :meal_type, options_for_select(["Vegetarian", "Meaty"]), multipart: true, class: "custom-select mb-2"%>
+    <%= form.label :meal_time, class: "ml-4 mr-3" %>
+    <% %w[Breakfast Lunch Dinner Drinks].each do |m|%>
+      <div class="form-check mb-2 mr-sm-2">
+        <%= form.radio_button('meal_time[]',"#{m}", { multipart: true, class: "form-check-input mr-sm-2" })%>
+        <label class="form-check-label" for="check-<%= "#{m}"%>">
+          <%= "#{m}"%>
+        </label>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="py-3">
+    <%= form.label :ingredients %>
+    <%= form.rich_text_area :ingredients %>
+  </div>
+
+  <div class="py-3">
+    <%= form.label :method %>
+    <%= form.rich_text_area :method %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit action, class: "btn btn-success px-3 py-2"%>
+  </div>
+<% end %>

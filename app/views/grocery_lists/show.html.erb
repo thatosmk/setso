@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div class="center-align">
+<h2 class="text-center font-weight-light py-3">
+  <%= @grocery_list.name %>
+</h2>
+
+<%= render partial: "grocey_items/items", locals: { list: @grocery_list }%>
+
+<%= link_to 'Edit', edit_grocery_list_path(@grocery_list) %> |
+<%= link_to 'Back', grocery_lists_path %>
+</div>

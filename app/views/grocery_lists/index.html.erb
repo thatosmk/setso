@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h2 class="font-weight-light py-4">Grocery lists</h2>
+<p class="lead">
+  <%= Date.today.strftime("%B, %Y")%>
+</p>
+
+<% @grocery_lists.each do |list| %>
+    <hr/>
+      <%= link_to list do %>
+      <div class="media">
+        <div class="media-body">
+          <h3 class="font-weight-bold"><%= list.name %></h3>
+        </div>
+      </div>
+      <% end %>
+    <hr/>
+<% end %>
+
+<br>
+
+<%= link_to 'New Grocery List', new_grocery_list_path %>
