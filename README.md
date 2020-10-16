@@ -1,24 +1,13 @@
-# README
+# Setso
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Easily manage your recipes and shopping lists.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+* Recipe management with search functionality
+* Shopping list management
 
-* System dependencies
+## Future Goals
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Online shopping integration, 
+* Product discounts discovery and alerting
