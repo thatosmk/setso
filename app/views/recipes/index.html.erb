@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="d-flex flex-md-row flex-column bd-highlight">
+<div class="d-flex flex-sm-row flex-column bd-highlight">
   <div class="bd-highlight w-100">
     <h2 class="font-weight-light py-4">Recipes</h2>
     <div class="d-flex flex-sm-row flex-column bd-highlight">
@@ -8,7 +8,8 @@
         <%= form_tag(recipes_path, method: :get, class: "form-inline") do%>
           <%= text_field_tag :search, params[:search], class: "form-control mb-2 mr-sm-2", placeholder: "Search for a recipe"%>
           <%= select_tag :meal_type,  options_for_select(["Vegetarian", "Meaty"]),  multipart: true, include_blank: "Type: All", class: "custom-select mb-2 mr-sm-2 mr-1"%>
-          <%= submit_tag "Search", class: "btn btn-success mb-2"%>
+          <%= submit_tag "Search", class: "btn btn-success mb-2 d-md-inline d-none"%>
+          <%= submit_tag "Search", class: "btn btn-success mb-2 d-block d-md-none"%>
         <% end %>
       </div>
       <div class="bd-highlight col-md-2">

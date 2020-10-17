@@ -19,7 +19,19 @@ $primary: #000;
 
 .center-align
 {
-    padding: 0 15rem;
+    @media(min-width: 992px)
+    {
+        padding: 0 15rem;
+    }
+    @media(max-width: 768px)
+    {
+        padding: 0 8rem;
+    }
+
+    @media(max-width: 560px)
+    {
+        padding: 0 1rem;
+    }
 }
 
 .svg-white
