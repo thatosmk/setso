@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-      <%= link_to "setso", root_path, class: "navbar-brand" %>
+      <%= link_to "setso", root_path, class: "font-weight-bold navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <svg class="bi bi-filter-left" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
@@ -10,20 +10,20 @@
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Recipes',recipes_path, class: "nav-link", aria: { disabled: false} %>
+            <%= link_to 'Recipes',recipes_path, class: "font-weight-bold nav-link", aria: { disabled: false} %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Groceries',grocery_lists_path, class: "nav-link", aria: { disabled: false} %>
+            <%= link_to 'Groceries',grocery_lists_path, class: "font-weight-bold nav-link", aria: { disabled: false} %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Logout',destroy_user_session_path, method: :delete, class: "nav-link", aria: { disabled: false} %>
+            <%= link_to 'Logout',destroy_user_session_path, method: :delete, class: "font-weight-bold nav-link", aria: { disabled: false} %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Log in', new_user_session_path, class: "nav-link active", aria: { disabled: false} %>
+            <%= link_to 'Log in', new_user_session_path, class: "font-weight-bold nav-link active", aria: { disabled: false} %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign up', new_user_registration_path, class: "nav-link active", aria: { disabled: false} %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "font-weight-bold nav-link active", aria: { disabled: false} %>
           </li>
         <% end %>
       </ul>

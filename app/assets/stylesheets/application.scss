@@ -42,3 +42,25 @@ $primary: #000;
     width: 1.5rem;
     height: 1.5rem;
 }
+
+.ola-built
+{
+    @media(min-width: 992px)
+    {
+        width: 75%;
+        padding: 5rem 0;
+    }
+    @media(max-width: 768px)
+    {
+        width: 100%;
+    }
+
+    @media(max-width: 560px)
+    {
+        width: 100%;
+        h1,p
+        {
+            text-align: center;
+        }
+    }
+}

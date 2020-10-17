@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Recipies & Grocery List | Foody</title>
+    <title>Setso: Where the world cooks together</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name='description' content='<%= yield_meta_tag(:description, 'Food recipe development platform for cooks,  chefs and food enthusiats') %>' />
+    <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'food, recipe, shopping, shopping list, grocery, stokvel, cook, chefs') %>' />
+    <meta property="og:title" content="Setso: Wherethe world cooks together" />
+    <meta property="og:site_name" content="Setso" />
+    <meta property="og:url" content="https://setso.plab.co.za/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Food recipe development platform for cooks,  chefs and food enthusiats" />
+    <meta property="og:image" content="<%= asset_path("healthy-eating.png")%>" />
+    <meta property="og:image:width" content="3333" />
+    <meta property="og:image:height" content="2500" />
+    <meta property="og:locale" content="en_ZA" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://setso.plab.co.za">
+    <meta name='twitter:description' content='<%= yield_meta_tag(:description, 'Food recipe development platform for cooks,  chefs and food enthusiats') %>' />
+    <meta name="twitter:image" content="<%= image_path("healthy-eating.png")%>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>

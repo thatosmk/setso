@@ -1,13 +1,16 @@
 <div class="d-flex flex-sm-row flex-column-reverse bd-highlight">
-  <div class="bd-highlight w-75">
-    <h1 class="font-weight-bold pt-5 mt-4">Built for chefs, cooks &amp; foodies</h1>
+  <div class="bd-highlight ola-built">
+    <h1 class="font-weight-bold pt-3">Built for chefs, cooks &amp; foodies</h1>
     <p class="py-3 lead">
       Setso is a development platform inspired by the way you cook. You can share and
       develop recipes and discover products through managing your shopping lists.
     </p>
-    <%= link_to "Get Started", new_user_registration_path, class: "btn btn-dark px-3 py-2"%>
+    <%= link_to "Get Started for free", new_user_registration_path, class: "btn btn-dark px-3 py-2 d-md-inline d-none"%>
+    <%= link_to "Get Started for free", new_user_registration_path, class: "btn btn-dark px-3 py-2 d-block d-md-none"%>
   </div>
   <div class="bd-highlight w-100">
-    <%= image_tag("healthy-eating.png", class: "img-fluid mt-5")%>
+    <div class="mt-5 text-center">
+      <%= image_tag("healthy-eating.png", class: "img-fluid")%>
+    </div>
   </div>
 </div>
