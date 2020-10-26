@@ -3,9 +3,26 @@
     <p>Items</p>
   </div>
   <div class="bd-highlight w-100">
-    <% list.grocey_items.each do |item|%>
-      <li class="list-group-item">
-        <%= item.item %>
+    <% list.grocey_items.where(category: q).each do |item|%>
+      <li class="list-group-item" data-toggle="popover" role="button" data-placement="top" data-container="body" data-content="Edit">
+        <div class="d-flex flex-sm-row flex-column bd-highlight">
+          <div class="bd-highlight w-100">
+            <%= "#{item.item} " %><span class="badge badge-info"><%= "x#{item.qty}"%></span>
+            <br/>
+            <span class="text-muted">
+              <%= "#{item.category} - #{item.shop} " %>
+            </span>
+          </div>
+          <div class="bd-highlight w-100">
+            <%= link_to edit_grocey_item_path(item), class: "nav-item" do%>
+              <%= svg_tag("pencil.svg", class: "svg-gray")%>
+            <% end %>
+            <%= link_to grocey_item_path(item), method: :delete, class: "nav-item" do%>
+              <%= svg_tag("trash.svg", class: "svg-gray")%>
+            <% end %>
+          </div>
+        </div>
+        <br/>
       </li>
     <% end %>
   </div>
@@ -13,7 +30,9 @@
     <div class="p-3 mt-4 border rounded">
       <h5 class="font-weight-light py-3">add a new item</h5>
     <%= form_with(model: [list, GroceyItem.new], local: true, class: "form-inline") do |form| %>
-        <%= form.text_field :item , class: "form-control mb-2 mr-sm-2", placeholder: "Item name"%>
+      <%= form.select :category, options_for_select(["Pantry", "Fridge", "Laundry", "Vegetables"]), { include_blank: "Select category"}, class: "custom-select mb-2 mr-sm-2", required: true%>
+        <%= form.text_field :item , class: "form-control mb-2 mr-sm-2", placeholder: "Item name", required: true%>
+        <%= form.select :shop, options_for_select(["Woolies", "Pick n pay", "Checkers", "Food lovers"]), { include_blank: "Select shop"}, class: "custom-select mb-2 mr-sm-2", required: true%>
         <%= form.number_field :qty, class: "form-control mb-2 mr-sm-2", placeholder: "Quantity" %>
         <%= form.submit "add to list", class: "btn btn-success mb-2" %>
     <% end %>

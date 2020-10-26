@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings | Setso</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <%= render 'layouts/navbar' %>
+      <div class="d-flex flex-md-row flex-column bd-highlight py-3">
+        <div class="bd-highlight col-md-4">
+          <div class="card">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="media">
+                  <div class="media-body">
+                    <h6><%= current_user.email %></h6>
+                    <p>Settings</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+              <%= link_to "Profile", settings_profile_path %>
+              </li>
+              <li class="list-group-item">
+                <%= link_to "Account", settings_account_path %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bd-highlight col-md-8">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

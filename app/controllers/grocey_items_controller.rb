@@ -57,15 +57,19 @@ class GroceyItemsController < ApplicationController
   # DELETE /grocey_items/1
   # DELETE /grocey_items/1.json
   def destroy
+    @grocery_list = @grocey_item.grocery_list
     @grocey_item.destroy
     respond_to do |format|
-      format.html { redirect_to grocey_items_url, notice: 'Grocey item was successfully destroyed.' }
+      format.html { redirect_to grocery_list_path(@grocery_list), notice: 'Grocey item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def save_grocery_list
+      @grocery_list = @grocey_list.grocery_list
+    end
     def set_grocey_item
       @grocey_item = GroceyItem.find(params[:id])
     end
@@ -76,6 +80,6 @@ class GroceyItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def grocey_item_params
-      params.require(:grocey_item).permit(:item, :qty, :grocery_list_id)
+      params.require(:grocey_item).permit(:item, :qty, :grocery_list_id, :shop, :category)
     end
 end

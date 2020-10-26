@@ -43,6 +43,15 @@ $primary: #000;
     height: 1.5rem;
 }
 
+.svg-gray
+{
+    display: inline-block;
+    margin: 0 auto;
+    color: #bbb;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .ola-built
 {
     @media(min-width: 992px)

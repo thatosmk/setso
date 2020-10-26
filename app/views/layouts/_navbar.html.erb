@@ -10,13 +10,33 @@
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Recipes',recipes_path, class: "font-weight-bold nav-link", aria: { disabled: false} %>
+            <%= link_to recipes_path, class: "font-weight-bold nav-link", aria: { disabled: false} do %>
+              <%= svg_tag("license.svg", class: "svg-dark")%>
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Groceries',grocery_lists_path, class: "font-weight-bold nav-link", aria: { disabled: false} %>
+            <%= link_to grocery_lists_path, class: "font-weight-bold nav-link", aria: { disabled: false} do %>
+              <%= svg_tag("clipboard-list.svg", class: "svg-dark")%>
+            <% end %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Logout',destroy_user_session_path, method: :delete, class: "font-weight-bold nav-link", aria: { disabled: false} %>
+          <li class="nav-item dropdown">
+            <%= link_to "#", class: "nav-link dropdown-toggle", role: "button", data: { toggle: "dropdown" } do %>
+              <%= svg_tag("settings.svg", class: "svg-dark")%>
+            <% end %>
+            <div class="dropdown-menu">
+              <%= link_to settings_profile_path, class: "dropdown-item" do %>
+                <%= svg_tag("user.svg", class: "svg-dark")%>
+                Settings
+              <% end %>
+              <%= link_to "#", class: "dropdown-item" do %>
+                <%= svg_tag("bulb.svg", class: "svg-dark")%>
+                What's new
+              <% end %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                <%= svg_tag("logout.svg", class: "svg-dark")%>
+                Logout
+              <% end %>
+            </div>
           </li>
         <% else %>
           <li class="nav-item">

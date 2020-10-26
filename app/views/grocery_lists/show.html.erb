@@ -1,12 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <div class="center-align">
-<h2 class="text-center font-weight-light py-3">
+<h1 class="text-center font-weight-light py-3">
   <%= @grocery_list.name %>
-</h2>
+</h1>
+<div class="text-center">
+  <%= link_to edit_grocery_list_path(@grocery_list), class: "nav-item" do%>
+    <%= svg_tag("pencil.svg", class: "svg-gray")%>
+  <% end %>
+  <%= link_to grocery_list_path(@grocery_list), method: :delete, class: "nav-item" do%>
+    <%= svg_tag("trash.svg", class: "svg-gray")%>
+  <% end %>
+</div>
+<div class="text-center py-5">
+  <% %w[Pantry Fridge Laundry Vegetables].each do |category|%>
+    <%= link_to grocery_list_path(@grocery_list, q: "#{category}"), class: "btn btn-light" do %>
+      <%= "#{category}"%>
+    <% end %>
+  <% end %>
+</div>
 
-<%= render partial: "grocey_items/items", locals: { list: @grocery_list }%>
+<%= render partial: "grocey_items/items", locals: { list: @grocery_list, q: params[:q] }%>
 
-<%= link_to 'Edit', edit_grocery_list_path(@grocery_list) %> |
-<%= link_to 'Back', grocery_lists_path %>
 </div>

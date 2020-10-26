@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'settings/profile'
+  get 'settings/notifications'
+  get 'settings/account'
   devise_for :users
   resources :grocery_lists do
     resources :grocey_items, shallow: true
