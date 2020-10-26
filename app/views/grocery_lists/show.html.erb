@@ -20,6 +20,6 @@
   <% end %>
 </div>
 
-<%= render partial: "grocey_items/items", locals: { list: @grocery_list, q: params[:q] }%>
+<%= render partial: "grocey_items/items", locals: { list: @grocery_list, items: params[:q].nil? ? @grocery_list.grocey_items : @grocery_list.grocey_items.where(category: params[:q]) }%>
 
 </div>

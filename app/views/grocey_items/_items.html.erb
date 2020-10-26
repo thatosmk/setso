@@ -1,38 +1,59 @@
 <div class="d-flex flex-column bd-highlight justify-content-center">
   <div class="bd-highlight w-100">
-    <p>Items</p>
+    <h3 class="font-weight-light"><%= params[:q] ? "#{params[:q]}" : "Shopping items"%></h3>
   </div>
   <div class="bd-highlight w-100">
-    <% list.grocey_items.where(category: q).each do |item|%>
-      <li class="list-group-item" data-toggle="popover" role="button" data-placement="top" data-container="body" data-content="Edit">
-        <div class="d-flex flex-sm-row flex-column bd-highlight">
-          <div class="bd-highlight w-100">
-            <%= "#{item.item} " %><span class="badge badge-info"><%= "x#{item.qty}"%></span>
+    <% unless items.count > 0 %>
+      <div class="alert alert-dark my-3">
+        <p class="text-center">
+          Nothing here yet.
+        </p>
+      </div>
+    <% else %>
+      <div class="mt-3">
+        <% items.each do |item|%>
+          <li class="list-group-item" data-toggle="popover" role="button" data-placement="top" data-container="body" data-content="Edit">
+            <div class="d-flex flex-sm-row flex-column bd-highlight">
+              <div class="bd-highlight w-100">
+                <%= "#{item.item} " %><span class="badge badge-info"><%= "x#{item.qty}"%></span>
+                <br/>
+                <span class="text-muted">
+                  <%= "#{item.category} - #{item.shop} " %>
+                </span>
+              </div>
+              <div class="bd-highlight w-100">
+                <%= link_to "#item-edit#{item.id}", data: { toggle: "collapse" }, role: "button",class: "nav-item" do%>
+                  <%= svg_tag("pencil.svg", class: "svg-gray")%>
+                <% end %>
+                <%= link_to grocey_item_path(item), method: :delete, class: "nav-item" do%>
+                  <%= svg_tag("trash.svg", class: "svg-gray")%>
+                <% end %>
+              </div>
+            </div>
             <br/>
-            <span class="text-muted">
-              <%= "#{item.category} - #{item.shop} " %>
-            </span>
-          </div>
-          <div class="bd-highlight w-100">
-            <%= link_to edit_grocey_item_path(item), class: "nav-item" do%>
-              <%= svg_tag("pencil.svg", class: "svg-gray")%>
-            <% end %>
-            <%= link_to grocey_item_path(item), method: :delete, class: "nav-item" do%>
-              <%= svg_tag("trash.svg", class: "svg-gray")%>
-            <% end %>
-          </div>
-        </div>
-        <br/>
-      </li>
+          </li>
+                <div class="collapse" id="item-edit<%= "#{item.id}"%>">
+                    <div class="card card-body">
+                      <%= form_with(model: item, local: true, class: "form-inline") do |form| %>
+                        <%= form.select :category, options_for_select(["Pantry", "Fridge", "Laundry", "Vegetables"], item.category), { prompt: "Select category"}, class: "custom-select mb-2 mr-sm-2", required: true%>
+                          <%= form.text_field :item , class: "form-control mb-2 mr-sm-2", placeholder: "Item name", required: true%>
+                          <%= form.select :shop, options_for_select(["Woolies", "Pick n pay", "Checkers", "Food lovers"], item.shop), { prompt: "Select shop"}, class: "custom-select mb-2 mr-sm-2", required: true%>
+                          <%= form.number_field :qty, class: "form-control mb-2 mr-sm-2", placeholder: "Quantity" %>
+                          <%= form.submit "add to list", class: "btn btn-success mb-2" %>
+                      <% end %>
+                    </div>
+                </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <div class="bd-highlight w-100">
     <div class="p-3 mt-4 border rounded">
       <h5 class="font-weight-light py-3">add a new item</h5>
     <%= form_with(model: [list, GroceyItem.new], local: true, class: "form-inline") do |form| %>
-      <%= form.select :category, options_for_select(["Pantry", "Fridge", "Laundry", "Vegetables"]), { include_blank: "Select category"}, class: "custom-select mb-2 mr-sm-2", required: true%>
+      <%= form.select :category, options_for_select(["Pantry", "Fridge", "Laundry", "Vegetables"]), { prompt: "Select category"}, class: "custom-select mb-2 mr-sm-2", required: true%>
         <%= form.text_field :item , class: "form-control mb-2 mr-sm-2", placeholder: "Item name", required: true%>
-        <%= form.select :shop, options_for_select(["Woolies", "Pick n pay", "Checkers", "Food lovers"]), { include_blank: "Select shop"}, class: "custom-select mb-2 mr-sm-2", required: true%>
+        <%= form.select :shop, options_for_select(["Woolies", "Pick n pay", "Checkers", "Food lovers"]), { prompt: "Choose shop" }, class: "custom-select mb-2 mr-sm-2", required: true%>
         <%= form.number_field :qty, class: "form-control mb-2 mr-sm-2", placeholder: "Quantity" %>
         <%= form.submit "add to list", class: "btn btn-success mb-2" %>
     <% end %>

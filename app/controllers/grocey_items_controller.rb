@@ -43,6 +43,7 @@ class GroceyItemsController < ApplicationController
   # PATCH/PUT /grocey_items/1
   # PATCH/PUT /grocey_items/1.json
   def update
+    @grocery_list = @grocey_item.grocery_list
     respond_to do |format|
       if @grocey_item.update(grocey_item_params)
         format.html { redirect_to @grocery_list, notice: 'Grocey item was successfully updated.' }
