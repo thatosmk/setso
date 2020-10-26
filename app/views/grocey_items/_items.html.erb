@@ -1,6 +1,6 @@
 <div class="d-flex flex-column bd-highlight justify-content-center">
   <div class="bd-highlight w-100">
-    <h3 class="font-weight-light"><%= params[:q] ? "#{params[:q]}" : "Shopping items"%></h3>
+    <h3 class="font-weight-light"><%= (params[:q] or params[:store]) ? "#{params[:q]}" : "Shopping items"%></h3>
   </div>
   <div class="bd-highlight w-100">
     <% unless items.count > 0 %>
